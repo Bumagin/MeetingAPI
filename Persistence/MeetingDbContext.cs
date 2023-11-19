@@ -6,9 +6,10 @@ using Persistence.EntityTypeConfiguration;
 
 namespace Persistence;
 
-public class MeetingDbContext : DbContext, IInteresDbContext
+public class MeetingDbContext : DbContext, IInteresDbContext, IUserDbContext
 { 
     public DbSet<Interes> Interests { get; set; }
+    public DbSet<User> Users { get; set; }
     
     public MeetingDbContext(DbContextOptions<MeetingDbContext> options)
         : base(options) { }
