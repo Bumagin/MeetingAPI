@@ -29,7 +29,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         entity.PreferendGender = request.PreferendGender;
         entity.Email = request.Email;
         entity.Password = request.Password;
-        entity.Updated = DateTime.Now;
+        entity.Updated = DateTime.UtcNow;
         
         await _dbContext.SaveChangesAsync(cancellationToken);
     }

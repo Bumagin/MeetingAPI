@@ -22,7 +22,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
             PreferendGender = request.PreferendGender,
             Email = request.Email,
             Password = request.Password,
-            Created = DateTime.Now
+            Created = DateTime.UtcNow
         };
 
         await _dbContext.Users.AddAsync(user, cancellationToken);

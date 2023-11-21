@@ -18,7 +18,7 @@ public class UserController : BaseController
     private readonly IMapper _mapper;
     public UserController(IMapper mapper) => _mapper = mapper;
     
-    [HttpGet]
+    [HttpGet("GetAllUserListAsync")]
     public async Task<ActionResult<UserListVm>> GetAll()
     {
         var query = new GetUserListQuery{};
@@ -27,7 +27,7 @@ public class UserController : BaseController
         return Ok(vm);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("GetUserByIdAsync")]
     public async Task<ActionResult<UserDetailsVm>> Get(Guid id)
     {
         var query = new GetUserDetailsQuery
@@ -39,7 +39,7 @@ public class UserController : BaseController
         return Ok(vm);
     }
 
-    [HttpPost]
+    [HttpPost("CreateUser")]
     public async Task<ActionResult<Guid>> Create([FromBody] CreateUserDto createUserDto)
     {
         var command = _mapper.Map<CreateUserCommand>(createUserDto);
@@ -47,7 +47,7 @@ public class UserController : BaseController
         return Ok(userId);
     }
 
-    [HttpPut]
+    [HttpPut("UpdateUser")]
     public async Task<ActionResult> Create([FromBody] UpdateUserDto updateUserDto)
     {
         var command = _mapper.Map<UpdateUserCommand>(updateUserDto);
@@ -56,7 +56,7 @@ public class UserController : BaseController
         return Ok();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("DeleteUser")]
     public async Task<ActionResult> Delete(Guid id)
     {
         var command = new DeleteUserCommand
