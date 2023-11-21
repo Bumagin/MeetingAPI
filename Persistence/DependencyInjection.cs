@@ -12,7 +12,7 @@ public static class DependencyInjection
         var connectionString = configuration["PostgreSQL"];
         services.AddDbContext<MeetingDbContext>(options =>
         {
-            options.UseNpgsql(connectionString);
+            options.UseNpgsql(configuration.GetConnectionString("PostgreSQL"));
         });
         services.AddScoped<IUserDbContext>(provider =>
             provider.GetService<MeetingDbContext>());
